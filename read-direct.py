@@ -40,6 +40,7 @@ W. Newhall 1/2019 (original)
 import argparse
 import os
 
+
 def main():
 
     # Get arguments from command line
@@ -53,38 +54,15 @@ def main():
     start_byte = args.start_byte
     num_bytes = args.num_bytes
 
-    # if args.isfile is None:
-    #     isfile = 0
-    # else:
-    #     isfile = args.isfile
-
-    # if isfile == 0
-    #     drive_name = create_drive_name(args.phys_drive)
-    # else:
-    #     drive_name = 
-
-    #drive_name = "/dev/sde"
-    #drive_name = '\\\\.\\PhysicalDrive2'
-    #drive_name = '\\\\.\\F:'
-
     print("Getting data from {}.".format(data_source))
     source_data = read_source(data_source, start_byte, num_bytes)
     for data_byte in source_data:
         print("{:02X} ".format(data_byte), end = '')
     print("")
 
-# def create_drive_name(phys_drive):
-#     # Determine they drive name to use based on the operating system.
-#     # For Windows, the physcial drive number must be used (0, 1, 2, etc.).
-#     if os.name == 'posix':  # Running on Linux
-#         drive_name = '/dev/' + phys_drive
-#     elif os.name == 'nt':   # Running on Windows
-#         drive_name = r'\\.\\PhysicalDrive%s' % phys_drive
-#     else:
-#         raise Exception('Unable to determine drive name on this operating system.')
-#     return drive_name
 
 def read_source(source_name, start_byte, num_bytes):
+    
     # Read data from the source.  Start with <start_byte>
     # and read <num_bytes> of bytes.
     with open(source_name, 'rb') as h_file:
