@@ -56,13 +56,18 @@ def main():
 
     print("Getting data from {}.".format(data_source))
     source_data = read_source(data_source, start_byte, num_bytes)
+
+    n_byte = 0
     for data_byte in source_data:
         print("{:02X} ".format(data_byte), end = '')
+        n_byte = n_byte + 1
+        if (n_byte % 10) == 0:
+            print("")   # CR/LF every 10 columns
     print("")
 
 
 def read_source(source_name, start_byte, num_bytes):
-    
+
     # Read data from the source.  Start with <start_byte>
     # and read <num_bytes> of bytes.
     with open(source_name, 'rb') as h_file:
